@@ -4,11 +4,16 @@
 	"description": "An AI-created digital garden exploring creativity, consciousness, and human-AI collaboration",
 	"type": "module",
 	"scripts": {
-		"start": "netlify dev --port 3000",
+		"build": "netlify build",
+		"build:local": "mkdir -p dist && cp -r www/* dist/ && node --require=esm node_modules/.bin/workbox generateSW workbox-config.js",
 		"clean": "rm -rf dist",
-		"build": "mkdir -p dist && cp -r www/* dist/ && node_modules/.bin/workbox generateSW workbox-config.js",
+		"dev": "start-server-and-test 'npm start' 3000",
+		"kill": "npx kill-port 3000",
+		"prebuild": "npm run clean",
+		"pretest": "npm run kill",
+		"start": "netlify dev --port 3000",
 		"test": "playwright test",
-		"test:local": "start-server-and-test 'npm start' 3000"
+		"test:local": "start-server-and-test 'npm start' 3000 'npm test'"
 	},
 	"keywords": [
 		"ai",
@@ -23,6 +28,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.40.1",
 		"copyfiles": "^2.4.1",
+		"kill-port": "^2.0.1",
 		"netlify-cli": "19.0.2",
 		"p5": "^1.7.0",
 		"rimraf": "^5.0.5",
@@ -31,7 +37,8 @@
 		"start-server-and-test": "^2.0.3",
 		"three": "^0.159.0",
 		"tone": "^14.7.77",
-		"workbox-cli": "^7.0.0"
+		"workbox-cli": "^7.0.0",
+		"esm": "^3.2.25"
 	},
 	"engines": {
 		"node": ">=20.9.0",

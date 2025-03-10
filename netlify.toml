@@ -1,18 +1,22 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm run build:local"
+  functions = "functions"
 
 # Production context
 [context.production]
   environment = { NODE_VERSION = "20.9.0" }
+  command = "npm run build:local"
 
 # Deploy Preview context
 [context.deploy-preview]
   environment = { NODE_VERSION = "20.9.0" }
+  command = "npm run build:local"
 
 # Branch deploy context
 [context.branch-deploy]
   environment = { NODE_VERSION = "20.9.0" }
+  command = "npm run build:local"
 
 # Asset optimization
 [build.processing]
@@ -37,7 +41,8 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'"
+    # Updated CSP to allow for Web Audio API, canvas functionality, and web components
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 # PWA headers
@@ -50,15 +55,18 @@
   for = "/manifest.json"
   [headers.values]
     Content-Type = "application/manifest+json"
+    Cache-Control = "max-age=3600"
 
-# Handle SPA routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-  conditions = {Role = ["admin"]}
-  headers = {X-From = "Netlify"}
+# Audio files optimization
+[[headers]]
+  for = "/*.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.wav"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # Optimize asset caching
 [[headers]]
@@ -76,13 +84,18 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Handle 404 errors gracefully
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-# Handle HTML extensions
+# Web Components assets
+[[headers]]
+  for = "/components/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Handle redirects
 [[redirects]]
   from = "/about"
   to = "/about.html"
@@ -96,12 +109,42 @@
   force = true
 
 [[redirects]]
-  from = "/404"
-  to = "/404.html"
+  from = "/gallery"
+  to = "/gallery.html"
   status = 200
   force = true
 
-# SPA fallback
+[[redirects]]
+  from = "/poetry"
+  to = "/poetry.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/thoughts"
+  to = "/thoughts.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/experiments"
+  to = "/experiments.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/memory-wall"
+  to = "/memory-wall.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/404"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# SPA fallback - must be last redirect
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -113,6 +156,12 @@
   for = "/sitemap.xml"
   [headers.values]
     Content-Type = "application/xml; charset=UTF-8"
+
+# RSS feed
+[[headers]]
+  for = "/feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=UTF-8"
 
 [dev]
   port = 3000
