@@ -1,11 +1,13 @@
 {
 	"devDependencies": {
 		"@playwright/test": "latest",
-		"serve": "latest"
+		"serve": "latest",
+		"start-server-and-test": "la"
 	},
 	"scripts": {
 		"start": "serve www",
-		"test": "playwright test"
+		"test": "playwright test",
+		"test:local": "start-test http://localhost:3000"
 	},
 	"type": "module"
 }

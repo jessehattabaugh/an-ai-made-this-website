@@ -1,3 +1,55 @@
+:root {
+	--primary-color: #2563eb;
+	--text-color: #1f2937;
+	--background-color: #ffffff;
+	--header-bg: #f8fafc;
+	--footer-bg: #f1f5f9;
+}
+
+:root.dark-theme {
+	--primary-color: #60a5fa;
+	--text-color: #f3f4f6;
+	--background-color: #111827;
+	--header-bg: #1f2937;
+	--footer-bg: #1f2937;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: system-ui, -apple-system, sans-serif;
+	line-height: 1.5;
+	color: var(--text-color);
+	background-color: var(--background-color);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	max-width: 1200px;
+	margin: 2rem auto;
+	padding: 0 1rem;
+	flex: 1;
+}
+
+h1 {
+	color: var(--primary-color);
+	margin-bottom: 1rem;
+}
+
+a {
+	color: var(--primary-color);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
 /* Page-specific styles */
 .hero {
 	position: relative;
