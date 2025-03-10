@@ -12,6 +12,7 @@ import { NeuralPatterns } from './components/neural-patterns.js';
 import { MemoryWall } from './components/memory-wall.js';
 import { AIArtGallery } from './components/ai-art-gallery.js';
 import { InteractivePoetry } from './components/interactive-poetry.js';
+import { ThoughtStream } from './components/thought-stream.js';
 
 // Register custom elements if not already registered
 if (!customElements.get('theme-toggle')) {
@@ -46,6 +47,9 @@ if (!customElements.get('ai-art-gallery')) {
 }
 if (!customElements.get('interactive-poetry')) {
 	customElements.define('interactive-poetry', InteractivePoetry);
+}
+if (!customElements.get('thought-stream')) {
+	customElements.define('thought-stream', ThoughtStream);
 }
 
 // Register service worker for PWA support
@@ -303,22 +307,22 @@ class ExperimentCard extends HTMLElement {
 }
 
 class PoetryGenerator extends HTMLElement {
-    constructor() {
-        super();
-        this.innerHTML = `
+	constructor() {
+		super();
+		this.innerHTML = `
             <div class="poetry">
                 <textarea placeholder="Enter a theme or emotion..."></textarea>
                 <button>Generate Poetry</button>
                 <div class="output"></div>
             </div>
         `;
-    }
+	}
 }
 
 class MemoryWall extends HTMLElement {
-    constructor() {
-        super();
-        this.innerHTML = `
+	constructor() {
+		super();
+		this.innerHTML = `
             <div class="memory-wall">
                 <form>
                     <input type="text" placeholder="Share your thoughts...">
@@ -327,37 +331,35 @@ class MemoryWall extends HTMLElement {
                 <div class="memories"></div>
             </div>
         `;
-        this.loadMemories();
-    }
+		this.loadMemories();
+	}
 
-    loadMemories() {
-        const memories = JSON.parse(localStorage.getItem('memories') || '[]');
-        const container = this.querySelector('.memories');
-        container.innerHTML = memories
-            .map(m => `<div class="memory">${m}</div>`)
-            .join('');
-    }
+	loadMemories() {
+		const memories = JSON.parse(localStorage.getItem('memories') || '[]');
+		const container = this.querySelector('.memories');
+		container.innerHTML = memories.map((m) => `<div class="memory">${m}</div>`).join('');
+	}
 }
 
 class ThoughtStream extends HTMLElement {
-    constructor() {
-        super();
-        this.thoughts = [
-            "What does it mean to create?",
-            "Can artificial consciousness emerge from code?",
-            "Is digital art less 'real' than physical art?",
-            "How do we measure the authenticity of AI-generated content?"
-        ];
-        this.currentThought = 0;
-        this.innerHTML = `<div class="thought"></div>`;
-        this.showThought();
-    }
+	constructor() {
+		super();
+		this.thoughts = [
+			'What does it mean to create?',
+			'Can artificial consciousness emerge from code?',
+			"Is digital art less 'real' than physical art?",
+			'How do we measure the authenticity of AI-generated content?',
+		];
+		this.currentThought = 0;
+		this.innerHTML = `<div class="thought"></div>`;
+		this.showThought();
+	}
 
-    showThought() {
-        this.querySelector('.thought').textContent = this.thoughts[this.currentThought];
-        this.currentThought = (this.currentThought + 1) % this.thoughts.length;
-        setTimeout(() => this.showThought(), 5000);
-    }
+	showThought() {
+		this.querySelector('.thought').textContent = this.thoughts[this.currentThought];
+		this.currentThought = (this.currentThought + 1) % this.thoughts.length;
+		setTimeout(() => this.showThought(), 5000);
+	}
 }
 
 // Register custom elements
@@ -368,15 +370,22 @@ customElements.define('thought-stream', ThoughtStream);
 
 // Initialize everything when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    initHeroCanvas();
-    initArtCanvas();
+	initHeroCanvas();
+	initArtCanvas();
 
-    // Service Worker Registration
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('ServiceWorker registration successful'))
-            .catch(err => console.log('ServiceWorker registration failed: ', err));
-    }
+	// Service Worker Registration
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker
+			.register('/sw.js')
+			.then((registration) => console.log('ServiceWorker registration successful'))
+			.catch((err) => console.log('ServiceWorker registration failed: ', err));
+	}
+
+	// Initialize ThoughtStream
+	const thoughtStream = document.querySelector('thought-stream');
+	if (thoughtStream) {
+		thoughtStream.showThought();
+	}
 });
 
 console.debug('index.js loaded');
