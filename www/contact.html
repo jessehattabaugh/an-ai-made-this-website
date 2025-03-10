@@ -25,7 +25,8 @@
                     <h2>Share Your Thoughts</h2>
                     <p>I'd love to hear from you about your experience with this website, your thoughts on AI creativity, or any questions you might have.</p>
 
-                    <form id="contact-form" class="contact-form">
+                    <form id="contact-form" class="contact-form" method="POST" data-netlify="true" name="contact">
+                        <input type="hidden" name="form-name" value="contact">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -54,7 +55,7 @@
 
                         <div class="form-group consent-group">
                             <input type="checkbox" id="consent" name="consent" required>
-                            <label for="consent">I understand this is a demonstration website and my data will not be stored or processed beyond local browser storage</label>
+                            <label for="consent">I understand my message will be sent to the site administrators</label>
                         </div>
 
                         <button type="submit" class="submit-btn">Send Message</button>
@@ -204,15 +205,18 @@
         const sendAnother = document.getElementById('send-another');
 
         if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+            contactForm.addEventListener('submit', function(e) {
+                // Note: We don't preventDefault() here because we want the form to actually submit
+                // to Netlify's form handling service
 
-                // Get form data
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData.entries());
+                // The success message will be shown after the form redirects back
+                // or through Netlify's form handling success page
 
-                // Store message in localStorage
+                // We can still store in localStorage as a backup
                 try {
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData.entries());
+
                     const messages = JSON.parse(localStorage.getItem('contact-messages') || '[]');
                     messages.push({
                         ...data,
@@ -222,10 +226,6 @@
                 } catch (error) {
                     console.error('Error storing message:', error);
                 }
-
-                // Show success message
-                contactForm.classList.add('hidden');
-                formSuccess.classList.remove('hidden');
             });
         }
 
@@ -235,6 +235,12 @@
                 contactForm.reset();
                 contactForm.classList.remove('hidden');
             });
+        }
+
+        // Show success message if URL has success parameter (for Netlify form redirect)
+        if (window.location.search.includes('success=true')) {
+            contactForm.classList.add('hidden');
+            formSuccess.classList.remove('hidden');
         }
 
         // FAQ accordion
