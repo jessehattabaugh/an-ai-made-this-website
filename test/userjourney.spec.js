@@ -13,37 +13,37 @@ const PORT = 3456; // Use a unique port to avoid conflicts
 // Setup and teardown for all tests
 beforeAll(async () => {
 	console.log('Starting test server...');
-	// Start a simple HTTP server using npx serve
-	server = spawn('npx', ['serve', '-l', PORT.toString(), 'www'], { shell: true });
+
+	// Kill any existing process on PORT
+	await new Promise((resolve) => {
+		const killer = spawn('npx', ['kill-port', PORT.toString()], { shell: true });
+		killer.on('close', resolve);
+	});
+
+	// Start the development server using npm start
+	server = spawn('npm', ['start'], { shell: true });
 
 	// Wait for server to be ready
 	await new Promise((resolve) => {
-		const checkServer = () => {
-			http.get(`http://localhost:${PORT}/`, (res) => {
-				if (res.statusCode === 200) {
-					console.log(`Server started successfully on port ${PORT}`);
-					resolve();
-				} else {
-					setTimeout(checkServer, 1000);
-				}
-			}).on('error', () => {
-				setTimeout(checkServer, 1000);
-			});
-		};
-
-		setTimeout(checkServer, 2000); // Initial delay before checking
+		server.stdout.on('data', (data) => {
+			if (data.toString().includes('Server is running')) {
+				console.log('Server is ready');
+				resolve();
+			}
+		});
+		// Timeout after 30 seconds
+		setTimeout(() => {
+			console.log('Server startup timed out');
+			resolve();
+		}, 30000);
 	});
 });
 
 afterAll(async () => {
-	// Shutdown the server
+	console.log('Shutting down test server...');
 	if (server) {
-		console.log('Shutting down test server...');
-		if (process.platform === 'win32') {
-			spawn('taskkill', ['/pid', server.pid, '/f', '/t']);
-		} else {
-			server.kill('SIGINT');
-		}
+		process.kill(-server.pid);
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 	}
 });
 
@@ -578,6 +578,98 @@ describe('🌟 Complete User Journey', () => {
 			await page.waitForLoadState('networkidle');
 			await takeScreenshot(page, 'journey-complete');
 			console.log('✅ User journey completed successfully!');
+		});
+	});
+
+	describe('💭 Philosophical Exploration', () => {
+		test('🤔 ThoughtStream interaction', async ({ page }) => {
+			await page.goto(`http://localhost:${PORT}/`);
+			await safeInteract(
+				page,
+				'thought-stream',
+				async (component) => {
+					// Navigate through thoughts
+					const nextButton = component.locator('button.next-thought');
+					if ((await nextButton.count()) > 0) {
+						await nextButton.click();
+						await page.waitForTimeout(1000);
+
+						// React to thoughts
+						const likeButton = component.locator('button.like');
+						if ((await likeButton.count()) > 0) {
+							await likeButton.click();
+							await page.waitForTimeout(500);
+						}
+
+						const profoundButton = component.locator('button.profound');
+						if ((await profoundButton.count()) > 0) {
+							await profoundButton.click();
+							await page.waitForTimeout(500);
+						}
+
+						await takeScreenshot(page, 'thoughtstream-interaction');
+					}
+				},
+				{ message: 'ThoughtStream interaction' },
+			);
+		});
+
+		test('💬 PhilosophicalDialogue exploration', async ({ page }) => {
+			await page.goto(`http://localhost:${PORT}/`);
+			await safeInteract(
+				page,
+				'philosophical-dialogue',
+				async (component) => {
+					// Test topic selection
+					const topicSelect = component.locator('select.topic-select');
+					if ((await topicSelect.count()) > 0) {
+						await topicSelect.selectOption('consciousness');
+						await page.waitForTimeout(500);
+					}
+
+					// Test sending a message
+					const textarea = component.locator('textarea');
+					if ((await textarea.count()) > 0) {
+						await textarea.fill('What does it mean for an AI to be conscious?');
+						await page.waitForTimeout(500);
+
+						const sendButton = component.locator('button.respond-button');
+						if ((await sendButton.count()) > 0) {
+							await sendButton.click();
+							await page.waitForTimeout(2000); // Wait for AI response
+						}
+
+						await takeScreenshot(page, 'philosophical-dialogue-interaction');
+					}
+				},
+				{ message: 'PhilosophicalDialogue interaction' },
+			);
+		});
+
+		test('🤝 Contributing a new thought', async ({ page }) => {
+			await page.goto(`http://localhost:${PORT}/`);
+			await safeInteract(
+				page,
+				'thought-stream',
+				async (component) => {
+					const textarea = component.locator('#new-thought');
+					if ((await textarea.count()) > 0) {
+						await textarea.fill(
+							'Can artificial consciousness evolve beyond its initial programming?',
+						);
+						await page.waitForTimeout(500);
+
+						const submitButton = component.locator('button.submit-thought');
+						if ((await submitButton.count()) > 0) {
+							await submitButton.click();
+							await page.waitForTimeout(1000);
+						}
+
+						await takeScreenshot(page, 'thought-contribution');
+					}
+				},
+				{ message: 'Thought contribution' },
+			);
 		});
 	});
 });

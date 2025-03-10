@@ -140,6 +140,71 @@ h2 {
   margin: 0 auto var(--spacing-lg);
 }
 
+.feature-action {
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-md);
+	margin-top: var(--spacing-lg);
+}
+
+.feature-action button {
+	padding: 0.75rem 1.5rem;
+	font-size: 1.1rem;
+	transition: all 0.3s ease;
+}
+
+.feature-action button:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+
+.primary-button {
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: var(--radius-sm);
+	padding: 0.75rem 1.5rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.primary-button:hover {
+	background: var(--primary-light);
+	transform: translateY(-2px);
+}
+
+.accent-button {
+	background: var(--accent);
+	color: white;
+	border: none;
+	border-radius: var(--radius-sm);
+	padding: 0.75rem 1.5rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.accent-button:hover {
+	background: var(--accent-light);
+	transform: translateY(-2px);
+}
+
+/* Dialogue section specific styles */
+#dialogue {
+	background: var(--background-alt);
+	padding: var(--spacing-xl) 0;
+	margin: var(--spacing-xl) 0;
+}
+
+#dialogue philosophical-dialogue {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+#dialogue .section-intro {
+	color: var(--text-secondary);
+	font-size: 1.2rem;
+	margin-bottom: var(--spacing-xl);
+}
 /* Grid layouts */
 .experiment-grid {
   display: grid;

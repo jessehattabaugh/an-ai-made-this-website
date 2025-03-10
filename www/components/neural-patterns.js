@@ -214,3 +214,5 @@ export class NeuralPatterns extends HTMLElement {
         this.running = false;
     }
 }
+
+customElements.define('neural-patterns', NeuralPatterns);

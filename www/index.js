@@ -13,6 +13,8 @@ import { MemoryWall } from './components/memory-wall.js';
 import { AIArtGallery } from './components/ai-art-gallery.js';
 import { InteractivePoetry } from './components/interactive-poetry.js';
 import { ThoughtStream } from './components/thought-stream.js';
+import { PhilosophicalDialogue } from './components/philosophical-dialogue.js';
+import { CreativeConsciousness } from './components/creative-consciousness.js';
 
 // Register custom elements if not already registered
 if (!customElements.get('theme-toggle')) {
@@ -50,6 +52,12 @@ if (!customElements.get('interactive-poetry')) {
 }
 if (!customElements.get('thought-stream')) {
 	customElements.define('thought-stream', ThoughtStream);
+}
+if (!customElements.get('philosophical-dialogue')) {
+	customElements.define('philosophical-dialogue', PhilosophicalDialogue);
+}
+if (!customElements.get('creative-consciousness')) {
+	customElements.define('creative-consciousness', CreativeConsciousness);
 }
 
 // Register service worker for PWA support

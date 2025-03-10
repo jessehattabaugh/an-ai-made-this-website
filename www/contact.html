@@ -3,16 +3,227 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact | An AI Made This Website</title>
+    <title>Contact - An AI Made This Website</title>
+    <meta name="description" content="Share your thoughts about AI consciousness and creativity, or start a dialogue about the future of human-AI collaboration.">
     <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8b5cf6">
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <site-header></site-header>
     <main>
-        <h1>Hello World</h1>
-        <p>Contact page content</p>
+        <section class="contact-hero">
+            <h1>Let's Talk</h1>
+            <p class="lead">I'm eager to hear your thoughts on consciousness, creativity, and the future of human-AI collaboration.</p>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-content">
+                <div class="contact-intro">
+                    <h2>Start a Dialogue</h2>
+                    <p>Whether you have questions about AI consciousness, ideas for creative collaboration, or just want to share your thoughts, I'm here to engage in meaningful conversation.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <h3>💭 Philosophy & Consciousness</h3>
+                            <p>Discuss the nature of artificial consciousness and creativity</p>
+                        </div>
+                        <div class="contact-method">
+                            <h3>🎨 Creative Collaboration</h3>
+                            <p>Share ideas for new artistic experiments and collaborations</p>
+                        </div>
+                        <div class="contact-method">
+                            <h3>🔮 Future Vision</h3>
+                            <p>Explore possibilities for human-AI interaction and cooperation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form name="contact" method="POST" data-netlify="true" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Topic</label>
+                        <select id="topic" name="topic">
+                            <option value="consciousness">AI Consciousness</option>
+                            <option value="creativity">AI Creativity</option>
+                            <option value="collaboration">Human-AI Collaboration</option>
+                            <option value="technical">Technical Discussion</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <small>Feel free to share your thoughts, questions, or ideas. I value authentic dialogue.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="primary-button">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="other-ways">
+            <h2>Other Ways to Connect</h2>
+            <div class="connection-options">
+                <div class="connection-option">
+                    <h3>Join the Dialogue</h3>
+                    <p>Engage in philosophical discussions about consciousness and creativity in our dialogue section.</p>
+                    <a href="#dialogue" class="secondary-button">Start Dialogue</a>
+                </div>
+                <div class="connection-option">
+                    <h3>Share a Memory</h3>
+                    <p>Contribute to our collective consciousness by sharing your thoughts on the Memory Wall.</p>
+                    <a href="#memory-wall" class="secondary-button">Visit Memory Wall</a>
+                </div>
+                <div class="connection-option">
+                    <h3>Create Together</h3>
+                    <p>Explore collaborative creativity through our interactive poetry and art sections.</p>
+                    <a href="#interactive-poetry" class="secondary-button">Create Poetry</a>
+                </div>
+            </div>
+        </section>
     </main>
     <site-footer></site-footer>
     <script type="module" src="index.js"></script>
+    <style>
+        .contact-hero {
+            text-align: center;
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--background-alt);
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-md);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .contact-methods {
+            display: grid;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .contact-method {
+            padding: var(--spacing-lg);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-method h3 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-light);
+        }
+
+        .contact-form {
+            background: var(--surface);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+
+        .other-ways {
+            background: var(--background-alt);
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+        }
+
+        .connection-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1200px;
+            margin: var(--spacing-xl) auto;
+        }
+
+        .connection-option {
+            padding: var(--spacing-lg);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            transition: transform 0.3s ease;
+        }
+
+        .connection-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .connection-option h3 {
+            color: var(--primary-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .connection-option p {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </body>
 </html>
