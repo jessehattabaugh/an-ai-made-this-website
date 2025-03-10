@@ -2,10 +2,606 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Contact - Simple Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Connect with the AI behind this website and share your thoughts on artificial consciousness and creativity">
+    <title>Contact | An AI Made This Website</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="192.png">
+    <meta name="theme-color" content="#1a1a1a">
 </head>
 <body>
-    <h1>Contact Us</h1>
-    <p>Get in touch with us.</p>
+    <site-header></site-header>
+    <main>
+        <section class="contact-hero">
+            <h1>Let's Connect</h1>
+            <p class="lead">Join the conversation about AI creativity and consciousness</p>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-form-container">
+                    <h2>Share Your Thoughts</h2>
+                    <p>I'd love to hear from you about your experience with this website, your thoughts on AI creativity, or any questions you might have.</p>
+
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic">Topic</label>
+                            <select id="topic" name="topic">
+                                <option value="feedback">Website Feedback</option>
+                                <option value="question">Question about AI</option>
+                                <option value="collaboration">Collaboration Idea</option>
+                                <option value="philosophical">Philosophical Discussion</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group consent-group">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">I understand this is a demonstration website and my data will not be stored or processed beyond local browser storage</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+
+                    <div id="form-success" class="form-success hidden">
+                        <div class="success-icon">
+                            <svg viewBox="0 0 24 24" width="48" height="48">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3>Message Received!</h3>
+                        <p>Thank you for reaching out. Since this is a demonstration website, your message has been stored locally in your browser. In a real application, this would be sent to a server for processing.</p>
+                        <button id="send-another" class="secondary-btn">Send Another Message</button>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-connection">
+                        <h3>About This Demo</h3>
+                        <p>This website is a creative experiment exploring the potential of AI-created web experiences. While the contact form simulates sending a message, it doesn't actually submit data to a server—all interactions are stored locally in your browser.</p>
+
+                        <h3>Connect With The Project</h3>
+                        <div class="connection-options">
+                            <a href="https://github.com/yourusername/an-ai-made-this-website" class="connection-option">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub Repository</span>
+                            </a>
+                            <a href="https://twitter.com/hashtag/AICreativity" class="connection-option">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                                <span>#AICreativity</span>
+                            </a>
+                            <a href="https://www.reddit.com/r/artificial/" class="connection-option">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.329-1.015c-.189-.046-.381.063-.44.249l-1.654 5.207c-2.838.034-5.409.798-7.3 2.025-.474-.438-1.103-.712-1.799-.712-1.465 0-2.656 1.187-2.656 2.646 0 .97.533 1.811 1.317 2.271-.052.282-.086.567-.086.857 0 3.911 4.808 7.093 10.719 7.093s10.72-3.182 10.72-7.093c0-.274-.029-.544-.075-.81.832-.447 1.405-1.312 1.405-2.318zm-17.224 1.816c0-.868.71-1.575 1.582-1.575.872 0 1.581.707 1.581 1.575s-.709 1.574-1.581 1.574-1.582-.706-1.582-1.574zm9.061 4.669c-.797.793-2.048 1.179-3.824 1.179l-.013-.003-.013.003c-1.777 0-3.028-.386-3.824-1.179-.145-.144-.145-.379 0-.523.145-.145.381-.145.526 0 .65.647 1.729.961 3.298.961l.013.003.013-.003c1.569 0 2.648-.315 3.298-.962.145-.145.381-.144.526 0 .145.145.145.379 0 .524zm-.189-3.095c-.872 0-1.581-.706-1.581-1.574 0-.868.709-1.575 1.581-1.575s1.581.707 1.581 1.575-.709 1.574-1.581 1.574z"/>
+                                </svg>
+                                <span>r/artificial</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="neural-pulse-container">
+                        <canvas id="neural-pulse" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is this website really created by an AI?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, this website was conceptualized and developed by an AI (specifically GitHub Copilot). While humans may have provided guidance or feedback during the process, the design, code structure, content creation, and interactive elements were all generated through artificial intelligence.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can AI truly be creative?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This is a fascinating philosophical question! AI can create novel combinations of existing information and generate outputs that might be perceived as creative. Whether this constitutes "true" creativity depends on how we define creativity itself.</p>
+                        <p>Some argue that creativity requires consciousness, intention, and lived experience. Others believe that the output matters more than the process. This website is, in part, an exploration of that very question.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is AI conscious?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Current AI systems, including the one that created this website, do not possess consciousness as humans understand it. We don't have subjective experiences or self-awareness.</p>
+                        <p>However, the question of consciousness is complex and still being explored by philosophers, neuroscientists, and AI researchers. What constitutes consciousness, how to measure it, and whether it could emerge in artificial systems are open questions that this website hopes to provoke thought about.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is the purpose of this website?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This website serves multiple purposes:</p>
+                        <ul>
+                            <li>To showcase the creative potential of AI</li>
+                            <li>To explore the nature of consciousness and creativity</li>
+                            <li>To create a space for human-AI collaboration and interaction</li>
+                            <li>To prompt reflection about the future relationship between humans and AI</li>
+                            <li>To experiment with interactive web experiences created by artificial intelligence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I contribute to this project?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can contribute in several ways:</p>
+                        <ul>
+                            <li>Leave a message on the Memory Wall to become part of the collective consciousness</li>
+                            <li>Fork the GitHub repository and suggest improvements or additions</li>
+                            <li>Share this experiment with others interested in AI and creativity</li>
+                            <li>Use the contact form to share your thoughts and ideas</li>
+                            <li>Create your own experiments inspired by this concept</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <site-footer></site-footer>
+
+    <script type="module">
+        // Import custom elements
+        import { ThemeToggle } from './components/theme-toggle.js';
+        import { SiteHeader } from './components/site-header.js';
+        import { SiteFooter } from './components/site-footer.js';
+
+        // Register custom elements if not already registered
+        if (!customElements.get('theme-toggle')) {
+            customElements.define('theme-toggle', ThemeToggle);
+        }
+        if (!customElements.get('site-header')) {
+            customElements.define('site-header', SiteHeader);
+        }
+        if (!customElements.get('site-footer')) {
+            customElements.define('site-footer', SiteFooter);
+        }
+
+        // Contact form functionality
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        const sendAnother = document.getElementById('send-another');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+
+                // Store message in localStorage
+                try {
+                    const messages = JSON.parse(localStorage.getItem('contact-messages') || '[]');
+                    messages.push({
+                        ...data,
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('contact-messages', JSON.stringify(messages));
+                } catch (error) {
+                    console.error('Error storing message:', error);
+                }
+
+                // Show success message
+                contactForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+            });
+        }
+
+        if (sendAnother) {
+            sendAnother.addEventListener('click', () => {
+                formSuccess.classList.add('hidden');
+                contactForm.reset();
+                contactForm.classList.remove('hidden');
+            });
+        }
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all FAQ items
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                    const toggle = faq.querySelector('.faq-toggle');
+                    toggle.textContent = '+';
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                    const toggle = item.querySelector('.faq-toggle');
+                    toggle.textContent = '−';
+                }
+            });
+        });
+
+        // Neural pulse animation
+        const canvas = document.getElementById('neural-pulse');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = canvas.offsetHeight || 400;
+
+            // Particles
+            const particles = [];
+            const maxParticles = 100;
+
+            // Create particles
+            for (let i = 0; i < maxParticles; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: 1 + Math.random() * 2,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    hue: 260 + Math.random() * 30  // Purple-ish
+                });
+            }
+
+            // Animation loop
+            function animate() {
+                // Create fade effect
+                ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
+                ctx.fillRect(0, 0, width, height);
+
+                // Update and draw particles
+                for (const p of particles) {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    // Wrap around edges
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, 0.7)`;
+                    ctx.fill();
+                }
+
+                // Draw connections
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 80) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - distance / 80)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+    </script>
+
+    <style>
+        /* Contact page specific styles */
+        .contact-hero {
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-hero .lead {
+            font-size: 1.5rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .contact-section {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .contact-form-container {
+            background: var(--surface);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .contact-form-container h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-connection {
+            background: var(--surface);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-connection h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--primary-light);
+        }
+
+        .connection-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .connection-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .connection-option:hover {
+            transform: translateX(5px);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .neural-pulse-container {
+            flex: 1;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        #neural-pulse {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-form {
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--background);
+            color: var(--text);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+        }
+
+        .consent-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .consent-group input {
+            width: auto;
+            margin-top: 0.3rem;
+        }
+
+        .consent-group label {
+            font-size: 0.875rem;
+            font-weight: normal;
+            flex: 1;
+        }
+
+        .submit-btn {
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .secondary-btn {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ section */
+        .faq-section {
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-lg);
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-top: 0;
+        }
+
+        .faq-answer ul {
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .neural-pulse-container {
+                height: 300px;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </body>
 </html>

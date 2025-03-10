@@ -1,19 +1,21 @@
 {
 	"background_color": "#1a1a1a",
-	"categories": ["web"],
-	"description": "An AI-created digital garden exploring creativity, consciousness, and human-AI collaboration",
+	"categories": ["creative", "artificial intelligence", "art", "experimental"],
+	"description": "An AI-created digital garden exploring creativity, consciousness, and the future of human-AI collaboration",
 	"display": "standalone",
-	"display_override": ["window-controls-overlay", "standalone"],
+	"display_override": ["window-controls-overlay"],
 	"icons": [
 		{
 			"sizes": "192x192",
-			"src": "192.png",
-			"type": "image/png"
+			"src": "/192.png",
+			"type": "image/png",
+			"purpose": "any maskable"
 		},
 		{
 			"sizes": "512x512",
-			"src": "512.png",
-			"type": "image/png"
+			"src": "/512.png",
+			"type": "image/png",
+			"purpose": "any maskable"
 		}
 	],
 	"name": "An AI Made This Website",
@@ -21,19 +23,20 @@
 	"scope": "/",
 	"screenshots": [
 		{
-			"form_factor": "wide",
-			"sizes": "1280x800",
-			"src": "/screenshots/desktop.png",
-			"type": "image/png"
-		},
-		{
-			"form_factor": "narrow",
-			"sizes": "750x1334",
-			"src": "/screenshots/mobile.png",
-			"type": "image/png"
+			"sizes": "1280x720",
+			"src": "/screenshot-1.jpg",
+			"type": "image/jpeg",
+			"platform": "wide",
+			"label": "Home screen of An AI Made This Website"
 		}
 	],
 	"short_name": "AI Website",
 	"start_url": "/",
-	"theme_color": "#6d28d9"
+	"theme_color": "#8b5cf6",
+	"lang": "en-US",
+	"dir": "ltr",
+	"prefer_related_applications": false,
+	"edge_side_panel": {
+		"preferred_width": 400
+	}
 }
