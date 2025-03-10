@@ -1,36 +1,32 @@
 {
-    "name": "an-ai-made-this-website",
-    "version": "1.0.0",
-    "description": "An AI-created digital garden exploring creativity, consciousness, and human-AI collaboration",
-    "type": "module",
-    "scripts": {
-        "start": "serve www",
-        "dev": "serve www -l 3000",
-        "test": "playwright test",
-        "test:local": "start-server-and-test 'npm run dev' http://localhost:3000 'npm test'",
-        "build": "npm run build:icons && npm run build:sw",
-        "build:icons": "node bin/generate-icons.js",
-        "build:sw": "node bin/generate-sw.js"
-    },
-    "keywords": [
-        "ai",
-        "creativity",
-        "art",
-        "consciousness",
-        "web-components",
-        "digital-garden"
-    ],
-    "author": "GitHub Copilot",
-    "license": "MIT",
-    "devDependencies": {
-        "@playwright/test": "^1.40.1",
-        "serve": "^14.2.1",
-        "start-server-and-test": "^2.0.3",
-        "workbox-cli": "^7.0.0",
-        "sharp": "^0.33.1"
-    },
-    "engines": {
-        "node": ">=20.9.0",
-        "npm": ">=10.1.0"
-    }
+	"name": "an-ai-made-this-website",
+	"version": "1.0.0",
+	"description": "An AI-created digital garden exploring creativity, consciousness, and human-AI collaboration",
+	"type": "module",
+	"scripts": {
+		"start": "serve www",
+		"test": "playwright test",
+		"test:local": "start-server-and-test http://localhost:3000"
+	},
+	"keywords": [
+		"ai",
+		"creativity",
+		"art",
+		"consciousness",
+		"web-components",
+		"digital-garden"
+	],
+	"author": "GitHub Copilot",
+	"license": "MIT",
+	"devDependencies": {
+		"@playwright/test": "^1.40.1",
+		"serve": "^14.2.1",
+		"start-server-and-test": "^2.0.3",
+		"workbox-cli": "^7.0.0",
+		"sharp": "^0.33.1"
+	},
+	"engines": {
+		"node": ">=20.9.0",
+		"npm": ">=10.1.0"
+	}
 }

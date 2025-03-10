@@ -242,3 +242,5 @@ export class MemoryWall extends HTMLElement {
         }).format(date);
     }
 }
+
+customElements.define('memory-wall', MemoryWall);
