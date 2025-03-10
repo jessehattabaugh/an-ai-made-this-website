@@ -1,0 +1,13 @@
+/about /about.html 200!
+/contact /contact.html 200!
+/404 /404.html 200!
+
+# Handle trailing slashes
+
+/about/ /about.html 200!
+/contact/ /contact.html 200!
+/404/ /404.html 200!
+
+# SPA fallback
+
+/\* /index.html 200

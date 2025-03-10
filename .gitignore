@@ -49,3 +49,6 @@ Thumbs.db
 
 # Keep the screenshots directory structure but not temporary files
 /public/screenshots/temp_*.png
+
+# Local Netlify folder
+.netlify

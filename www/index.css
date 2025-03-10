@@ -327,6 +327,26 @@ textarea.shake {
   animation: fadeIn 1s ease-in-out;
 }
 
+.thought-stream {
+	margin: 2rem 0;
+	padding: 4rem 2rem;
+	text-align: center;
+	background: var(--surface);
+	border-radius: var(--radius-md);
+	transition: transform 0.3s ease;
+}
+
+.thought-stream:hover {
+	transform: translateY(-5px);
+}
+
+.thought {
+	font-size: 2rem;
+	font-family: var(--font-serif);
+	line-height: 1.4;
+	color: var(--primary-light);
+	transition: opacity 0.5s ease;
+}
 /* AI Art Gallery Styles */
 .ai-art-gallery {
   display: flex;

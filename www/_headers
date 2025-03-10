@@ -1,0 +1,14 @@
+/sitemap.xml
+  Content-Type: application/xml; charset=UTF-8
+
+/about
+  Location: /about.html
+  Status: 301
+
+/contact
+  Location: /contact.html
+  Status: 301
+
+/404
+  Location: /404.html
+  Status: 301

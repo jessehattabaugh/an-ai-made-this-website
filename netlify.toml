@@ -1,5 +1,5 @@
 [build]
-  publish = "www"
+  publish = "dist"
   command = "npm run build"
 
 # Production context
@@ -81,3 +81,41 @@
   from = "/*"
   to = "/404.html"
   status = 404
+
+# Handle HTML extensions
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/404"
+  to = "/404.html"
+  status = 200
+  force = true
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Set correct content type for XML files
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=UTF-8"
+
+[dev]
+  port = 3000
+  publish = "www"
+  framework = "#static"
+  targetPort = 3000

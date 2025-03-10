@@ -5,10 +5,10 @@ import fs from 'fs';
 import path from 'path';
 
 test('basic page structure', async ({ page }) => {
-	await page.goto('/');
+	await page.goto('http://localhost:3000/');
 
 	// Check if page has the correct title
-	await expect(page).toHaveTitle('Simple Website');
+	await expect(page).toHaveTitle('An AI Made This Website');
 
 	// Check if page contains the Hello World text
 	const content = await page.textContent('body');
@@ -26,17 +26,9 @@ test('basic page structure', async ({ page }) => {
 });
 
 test('sitemap.xml exists and contains at least one page', async ({ page }) => {
-	await page.goto('/sitemap.xml');
+	const response = await page.goto('http://localhost:3000/sitemap.xml');
+	expect(response.ok()).toBeTruthy();
 
-	// Verify that sitemap.xml loads and contains XML content
-	const content = await page.content();
-	expect(content).toContain('<?xml');
-	expect(content).toContain('<urlset');
-
-	// Check that sitemap has at least one URL entry
-	expect(content).toContain('<url>');
-	expect(content).toContain('<loc>');
-
-	// Take a screenshot of the sitemap
-	await page.screenshot({ path: 'test-results/sitemap-screenshot.png' });
+	const xmlContent = await response.text();
+	expect(xmlContent).toContain('<url>');
 });

@@ -1,10 +1,11 @@
 import { expect, test } from '@playwright/test';
 
 test('404 page exists and has correct structure', async ({ page }) => {
-	await page.goto('/404.html');
+	await page.goto('/404');
 
 	// Verify the page exists and loads
-	expect(page.url()).toContain('/404.html');
+	const url = page.url();
+	expect(url.includes('/404') || url.includes('/404.html')).toBeTruthy();
 
 	// Verify basic HTML structure
 	const htmlTag = await page.$('html');
