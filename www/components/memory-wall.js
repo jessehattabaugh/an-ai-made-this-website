@@ -5,7 +5,7 @@ export class MemoryWall extends HTMLElement {
             <div class="memory-wall">
                 <div class="memory-input">
                     <form>
-                        <textarea 
+                        <textarea
                             placeholder="Share your thoughts about AI, consciousness, or creativity..."
                             maxlength="280"
                         ></textarea>

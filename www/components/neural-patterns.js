@@ -102,7 +102,7 @@ export class NeuralPatterns extends HTMLElement {
         for (let i = 0; i < this.nodes.length; i++) {
             const node = this.nodes[i];
             const connectionCount = Math.floor(Math.random() * 3) + 1;
-            
+
             for (let j = 0; j < connectionCount; j++) {
                 const targetIndex = Math.floor(Math.random() * this.nodes.length);
                 if (targetIndex !== i && !node.connections.has(targetIndex)) {

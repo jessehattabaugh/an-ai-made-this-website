@@ -31,7 +31,7 @@ self.addEventListener('fetch', event => {
                         if (event.request.url.includes('/api/')) {
                             return response;
                         }
-                        
+
                         return caches.open(CACHE_NAME)
                             .then(cache => {
                                 cache.put(event.request, response.clone());

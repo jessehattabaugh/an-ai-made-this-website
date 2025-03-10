@@ -119,7 +119,7 @@ export class SiteHeader extends HTMLElement {
         // Mobile menu functionality
         const mobileMenu = this.querySelector('.mobile-menu');
         const navLinks = this.querySelector('.nav-links');
-        
+
         mobileMenu?.addEventListener('click', () => {
             navLinks?.classList.toggle('active');
         });

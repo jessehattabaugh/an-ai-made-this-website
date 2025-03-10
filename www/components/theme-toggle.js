@@ -46,7 +46,7 @@ export class ThemeToggle extends HTMLElement {
 
         this.button = this.querySelector('button');
         this.button?.addEventListener('click', () => this.toggleTheme());
-        
+
         // Initialize theme
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const savedTheme = localStorage.getItem('theme');

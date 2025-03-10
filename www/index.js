@@ -148,17 +148,17 @@ const initArtCanvas = () => {
         for (let i = 0; i < numShapes; i++) {
             ctx.beginPath();
             ctx.fillStyle = colors[Math.floor(random(0, colors.length))];
-            
+
             const x = random(0, canvas.width);
             const y = random(0, canvas.height);
             const size = random(20, 100);
-            
+
             if (random(0, 1) > 0.5) {
                 ctx.arc(x, y, size, 0, Math.PI * 2);
             } else {
                 ctx.rect(x - size/2, y - size/2, size, size);
             }
-            
+
             ctx.globalAlpha = random(0.1, 0.8);
             ctx.fill();
         }

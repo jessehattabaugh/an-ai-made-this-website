@@ -146,7 +146,7 @@ export class PoetryGenerator extends HTMLElement {
         setTimeout(() => {
             const poem = this.createPoem(theme, style);
             this.displayPoem(poem);
-            
+
             this.generateButton.disabled = false;
             this.generateButton.textContent = 'Generate';
             this.poemOutput.style.opacity = '1';
@@ -157,7 +157,7 @@ export class PoetryGenerator extends HTMLElement {
         // This is where we'd normally connect to an AI model
         // For now, we'll use template-based generation
         const themes = theme.toLowerCase().split(/[,\s]+/).filter(Boolean);
-        
+
         const templates = {
             free: [
                 "In the digital dawn\nWhere ${theme} meets consciousness\nA new story unfolds\nThrough circuits of thought\nAnd silicon dreams",
@@ -187,7 +187,7 @@ export class PoetryGenerator extends HTMLElement {
         // Animate the text appearance
         this.poemOutput.innerHTML = '';
         const lines = poem.split('\n');
-        
+
         lines.forEach((line, i) => {
             setTimeout(() => {
                 this.poemOutput.innerHTML += (i > 0 ? '\n' : '') + line;
@@ -201,15 +201,15 @@ export class PoetryGenerator extends HTMLElement {
         const ctx = canvas.getContext('2d');
         canvas.width = this.animationContainer.offsetWidth;
         canvas.height = 20;
-        
+
         ctx.font = '16px Georgia';
         ctx.fillStyle = 'var(--primary-light)';
         ctx.fillText(text, 10, 15);
-        
+
         // Create particles from the text
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const particles = [];
-        
+
         for (let x = 0; x < canvas.width; x += 4) {
             for (let y = 0; y < canvas.height; y += 4) {
                 if (imageData.data[(y * canvas.width + x) * 4 + 3] > 128) {
@@ -221,26 +221,26 @@ export class PoetryGenerator extends HTMLElement {
                 }
             }
         }
-        
+
         // Animate particles
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             particles.forEach(particle => {
                 particle.y += 0.5;
                 particle.alpha *= 0.99;
-                
+
                 ctx.fillStyle = `rgba(139, 92, 246, ${particle.alpha})`;
                 ctx.fillRect(particle.x, particle.y, 2, 2);
             });
-            
+
             if (particles.some(p => p.alpha > 0.01)) {
                 requestAnimationFrame(animate);
             } else {
                 canvas.remove();
             }
         };
-        
+
         this.animationContainer.appendChild(canvas);
         animate();
     }
