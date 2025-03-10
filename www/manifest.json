@@ -1,7 +1,7 @@
 {
-	"background_color": "#ffffff",
+	"background_color": "#1a1a1a",
 	"categories": ["web"],
-	"description": "A minimal web boilerplate with the essentials",
+	"description": "An AI-created digital garden exploring creativity, consciousness, and human-AI collaboration",
 	"display": "standalone",
 	"display_override": ["window-controls-overlay", "standalone"],
 	"icons": [
@@ -16,7 +16,7 @@
 			"type": "image/png"
 		}
 	],
-	"name": "Simple Website",
+	"name": "An AI Made This Website",
 	"orientation": "any",
 	"scope": "/",
 	"screenshots": [
@@ -33,7 +33,7 @@
 			"type": "image/png"
 		}
 	],
-	"short_name": "Simple Web",
+	"short_name": "AI Website",
 	"start_url": "/",
-	"theme_color": "#2563eb"
+	"theme_color": "#6d28d9"
 }

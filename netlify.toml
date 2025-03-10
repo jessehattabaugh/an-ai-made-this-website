@@ -1,0 +1,83 @@
+[build]
+  publish = "www"
+  command = "npm run build"
+
+# Production context
+[context.production]
+  environment = { NODE_VERSION = "20.9.0" }
+
+# Deploy Preview context
+[context.deploy-preview]
+  environment = { NODE_VERSION = "20.9.0" }
+
+# Branch deploy context
+[context.branch-deploy]
+  environment = { NODE_VERSION = "20.9.0" }
+
+# Asset optimization
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = true
+[build.processing.js]
+  bundle = true
+  minify = true
+[build.processing.html]
+  pretty_urls = true
+[build.processing.images]
+  compress = true
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# PWA headers
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "max-age=0,no-cache,no-store,must-revalidate"
+
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+# Handle SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Role = ["admin"]}
+  headers = {X-From = "Netlify"}
+
+# Optimize asset caching
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Handle 404 errors gracefully
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
