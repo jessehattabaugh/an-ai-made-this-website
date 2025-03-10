@@ -1,63 +1,23 @@
 import { expect, test } from '@playwright/test';
 
 import fs from 'fs';
-import http from 'http';
 import path from 'path';
-import { spawn } from 'child_process';
 
 // Create a custom test fixture with describe blocks
 const { describe, beforeAll, afterAll } = test;
-let server;
-const PORT = 3456; // Use a unique port to avoid conflicts
-
-// Setup and teardown for all tests
-beforeAll(async () => {
-	console.log('Starting test server...');
-
-	// Kill any existing process on PORT
-	await new Promise((resolve) => {
-		const killer = spawn('npx', ['kill-port', PORT.toString()], { shell: true });
-		killer.on('close', resolve);
-	});
-
-	// Start the development server using npm start
-	server = spawn('npm', ['start'], { shell: true });
-
-	// Wait for server to be ready
-	await new Promise((resolve) => {
-		server.stdout.on('data', (data) => {
-			if (data.toString().includes('Server is running')) {
-				console.log('Server is ready');
-				resolve();
-			}
-		});
-		// Timeout after 30 seconds
-		setTimeout(() => {
-			console.log('Server startup timed out');
-			resolve();
-		}, 30000);
-	});
-});
-
-afterAll(async () => {
-	console.log('Shutting down test server...');
-	if (server) {
-		process.kill(-server.pid);
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-	}
-});
+// Use the port defined in Netlify config or package.json
+const PORT = 3000;
 
 // Main test suite for the complete user journey
 describe('🌟 Complete User Journey', () => {
 	// Helper function to take and save screenshots
 	async function takeScreenshot(page, name) {
-		// Ensure the screenshots directory exists
-		const screenshotsDir = path.join(process.cwd(), 'test-results/journey-screenshots');
+		// Ensure the screenshots directory exists in www folder
+		const screenshotsDir = path.join(process.cwd(), 'www/screenshots');
 		if (!fs.existsSync(screenshotsDir)) {
 			fs.mkdirSync(screenshotsDir, { recursive: true });
 		}
-
-		const screenshotPath = path.join(screenshotsDir, `${name}.tmp.png`);
+		const screenshotPath = path.join(screenshotsDir, `${name}.png`);
 		await page.screenshot({ path: screenshotPath, fullPage: true });
 		console.log(`Screenshot saved: ${screenshotPath}`);
 	}
@@ -65,21 +25,18 @@ describe('🌟 Complete User Journey', () => {
 	// Helper function to safely interact with components
 	async function safeInteract(page, selector, interactionFn, options = {}) {
 		const { timeout = 5000, message = 'Component interaction' } = options;
-
 		try {
 			const element = await page.$(selector);
 			if (!element) {
 				console.log(`${message}: Element not found`);
 				return false;
 			}
-
 			// Check if element is visible
 			const isVisible = await element.isVisible().catch(() => false);
 			if (!isVisible) {
 				console.log(`${message}: Element is not visible`);
 				return false;
 			}
-
 			// Try to perform the interaction with timeout
 			await Promise.race([
 				interactionFn(element),
@@ -90,7 +47,6 @@ describe('🌟 Complete User Journey', () => {
 					),
 				),
 			]);
-
 			return true;
 		} catch (error) {
 			console.log(`${message} failed: ${error.message}`);
@@ -494,7 +450,14 @@ describe('🌟 Complete User Journey', () => {
 				});
 				await page.waitForTimeout(1000);
 
-				await component.click().catch(() => console.log('Could not click neural patterns'));
+				// Check if canvas is visible and initialized
+				const canvas = component.locator('canvas');
+				await canvas.waitFor({ state: 'visible', timeout: 5000 });
+
+				// Trigger canvas interaction
+				await canvas
+					.click({ position: { x: 50, y: 50 } })
+					.catch(() => console.log('Could not click neural patterns canvas'));
 				await page.waitForTimeout(1000);
 
 				await takeScreenshot(page, 'neural-patterns-visualization');

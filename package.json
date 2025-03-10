@@ -7,13 +7,12 @@
 		"build": "netlify build",
 		"build:local": "mkdir -p dist && cp -r www/* dist/ && node --require=esm node_modules/.bin/workbox generateSW workbox-config.js",
 		"clean": "rm -rf dist",
-		"dev": "start-server-and-test 'npm start' 3000",
+		"dev": "start-test 3000",
 		"kill": "npx kill-port 3000",
 		"prebuild": "npm run clean",
-		"pretest": "npm run kill",
 		"start": "netlify dev --port 3000",
 		"test": "playwright test",
-		"test:local": "start-server-and-test 'npm start' 3000 'npm test'"
+		"test:local": "start-test 3000"
 	},
 	"keywords": [
 		"ai",
